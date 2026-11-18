@@ -8,7 +8,7 @@
 
 ## What you get
 
-37 MCP tools that wrap the [Prometiam Risk Intelligence API](https://www.prometiam.com/risk-api/docs?utm_source=npm&utm_medium=readme):
+38 MCP tools that wrap the [Prometiam Risk Intelligence API](https://www.prometiam.com/risk-api/docs?utm_source=npm&utm_medium=readme):
 
 | Tool | Description |
 |---|---|
@@ -31,6 +31,7 @@
 | `sanctions_watch` | Add a name to your sanctions watchlist: re-screened on every list update, with an optional webhook. Requires the `sanctions_watch` scope. **Mutating.** |
 | `sanctions_unwatch` | Remove one of your watchlist entries by id. **Mutating.** |
 | `vat_validate` | Validate an EU VAT number against VIES (27 EU states + XI) — returns registered name/address when valid. |
+| `einvoicing_check` | Check an e-invoicing reference offline (well formed, check digits match; no live status from a tax authority), look a Peppol ID up live (registered does not mean it receives invoices), or give a company's e-invoicing identifiers. 1 credit. |
 | `lei_lookup` | Look up a Legal Entity Identifier in the GLEIF global register — legal name, jurisdiction, status, address. |
 | `lei_search` | Resolve a company name to candidate LEIs (GLEIF full-text search). |
 | `lei_relationships` | GLEIF Level-2 ownership: direct and ultimate parents/children of an LEI. |
@@ -81,7 +82,7 @@ export PROMETIAM_API_KEY="rk_live_..."
 
 ## Hosted endpoint (no install)
 
-The same 37 tools are served over Streamable HTTP at `https://api.prometiam.com/functions/v1/mcp`: no `npx` and no local process. Send your own key as `Authorization: Bearer rk_live_...` (`X-API-Key` works too). With no key it runs in demo mode on the shared demo key (30 requests a minute and 2,000 calls a day for everyone, the quota the npx demo shares); in demo mode some tools, such as `sanctions_screen` and `events_search`, answer `upgrade_required`. The endpoint holds no data and no secret: each tool call is one API request, priced in credits like the REST call (sanctions screening is beta). Your own key works only from a client that can send a request header.
+The same 38 tools are served over Streamable HTTP at `https://api.prometiam.com/functions/v1/mcp`: no `npx` and no local process. Send your own key as `Authorization: Bearer rk_live_...` (`X-API-Key` works too). With no key it runs in demo mode on the shared demo key (30 requests a minute and 2,000 calls a day for everyone, the quota the npx demo shares); in demo mode some tools, such as `sanctions_screen` and `events_search`, answer `upgrade_required`. The endpoint holds no data and no secret: each tool call is one API request, priced in credits like the REST call (sanctions screening is beta). Your own key works only from a client that can send a request header.
 
 Claude Code:
 
@@ -151,7 +152,7 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) o
 
 That config runs on the shared demo key, no signup. To use your own key, add `"env": { "PROMETIAM_API_KEY": "rk_live_..." }` next to `args` (an empty value or the placeholder `rk_live_your_key_here` is ignored and the demo key is used).
 
-Restart Claude Desktop. The 37 tools appear in the tool list. Try:
+Restart Claude Desktop. The 38 tools appear in the tool list. Try:
 
 > "What's the Prometiam coverage today?"
 > "Search for companies named Mercadona in Spain."
@@ -212,7 +213,7 @@ Once installed and configured, you can verify the server lists tools without spi
 echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | PROMETIAM_API_KEY=rk_live_... npx -y prometiam-risk-mcp
 ```
 
-You should see a JSON-RPC response with all 37 tools and their schemas.
+You should see a JSON-RPC response with all 38 tools and their schemas.
 
 ## Rate limits & pricing
 

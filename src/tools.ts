@@ -508,6 +508,19 @@ export const TOOLS: ToolDef[] = [
     handler: (args) => safeCall(() => getClient().get(`/vat/${args.vat}`)),
   },
   {
+    name: 'einvoicing_check',
+    annotations: { title: 'Check e-invoicing reference', readOnlyHint: true, destructiveHint: false, openWorldHint: true },
+    description: 'Check an e-invoicing reference, or give the e-invoicing identifiers of a company. Two modes. (1) type and reference: an OFFLINE check of one reference, such as a party identifier (a VAT or tax number), a routing code (de_leitweg_id, it_sdi_code) or an invoice identifier (pl_ksef_number, br_nfe_key). The answer says whether it is well formed: basis check_digit means it has the form its publisher defines and its check characters match; basis format means only the form was checked; parts decodes a structured value as written in it. Neither basis means the reference was issued, is registered or active, or that a tax authority accepts an invoice that carries it; no live status from a national tax authority is served. type peppol_id also looks the participant up live in the Peppol network (registered at the time of the check; registered does not mean it receives invoices: receives_invoices, receives_credit_notes and document_types come from its SMP, and where the SMP is not read, for example when its robots.txt disallows it, they are null and document_types_unread says why). (2) country and company_number, or vat: for a company the API serves, its own e-invoicing identifiers (party_ids), its Peppol participant IDs looked up live (only those its company number and VAT number give: a company not found under them may be registered under another ID or receive e-invoices outside Peppol; the Peppol Directory is not read), and for Estonia the e-invoice recipients register (Contains data from the Estonian e-Business Register (RIK), CC BY 4.0). Prometiam is not a Peppol access point: it does not send, receive or validate invoices. 1 credit a call, errors free. The full list of types, by country, is on https://www.prometiam.com/risk-api/docs#einvoicing-check.',
+    schema: z.object({
+      type: z.string().optional().describe('Reference mode: the reference type, for example de_leitweg_id, pl_ksef_number, it_sdi_code, fr_siren, br_nfe_key or peppol_id. The types are listed on the docs page; an unknown type is refused and the types of its country are named.'),
+      reference: z.string().optional().describe('Reference mode: the value to check. Required with type.'),
+      country: Country.optional().describe('Company mode: the country of company_number.'),
+      company_number: z.string().optional().describe('Company mode: the company number in its register, with country.'),
+      vat: z.string().optional().describe('Company mode: the VAT number of the company, with its country prefix.'),
+    }),
+    handler: (args) => safeCall(() => getClient().get('/einvoicing/check', args)),
+  },
+  {
     name: 'lei_lookup',
     annotations: { title: 'Look up LEI', readOnlyHint: true, destructiveHint: false, openWorldHint: true },
     description: 'Look up a Legal Entity Identifier (LEI) in the GLEIF global register by its 20-character ISO 17442 code. Returns legal name, jurisdiction, entity and registration status, legal/HQ address, managing LOU, and next renewal date, and the ISINs GLEIF links to the LEI (identifiers.isin, at most 100, with isin_count; CC0). Use to validate or enrich a counterparty that publishes an LEI.',
