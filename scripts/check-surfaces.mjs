@@ -3,7 +3,7 @@
 //
 //   local        mcp/risk-mcp/package.json + server.json  (source of truth)
 //   npm          registry.npmjs.org/prometiam-risk-mcp
-//   github       the PUBLIC mirror matiasmaquieira96/prometiam-risk-mcp
+//   github       the PUBLIC mirror prometiam/prometiam-risk-mcp (under the founder's account until 9 Nov 2026, D228 a)
 //                (the main repo is private, so the mirror is what the world reads)
 //   mcp registry registry.modelcontextprotocol.io
 //
@@ -29,7 +29,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 // package with no version number to show it, and the registry entry lists it as a remote.
 const HOSTED_URL = 'https://api.prometiam.com/functions/v1/mcp'
 const PKG_NAME = 'prometiam-risk-mcp'
-const MIRROR = 'matiasmaquieira96/prometiam-risk-mcp'
+const MIRROR = 'prometiam/prometiam-risk-mcp'
 // D183 (4 Nov 2026): the DNS-verified name. The old io.github.matiasmaquieira96/risk-mcp entry stays in the registry untouched, at the version it has.
 const MCP_NAME = 'com.prometiam/risk-mcp'
 // The registry has no exact-name lookup; ?name= ignores the filter and ?search=prometiam
