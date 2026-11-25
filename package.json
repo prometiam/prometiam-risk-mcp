@@ -1,6 +1,6 @@
 {
   "name": "prometiam-risk-mcp",
-  "version": "0.4.80",
+  "version": "0.4.81",
   "mcpName": "com.prometiam/risk-mcp",
   "description": "Prometiam Risk Intelligence as a Model Context Protocol server for company data and KYB: official company-register data for 52 countries (ES, FR, GB, IE, PL, NO, FI, SE, HR, BE, DK, EE, SK, CH, LV, CY, RO, LT, CZ, DE (LEI-registered entities and energy-market register companies), NL (LEI-registered entities with a KVK number), US, CA, CO, BR, AR, AU, JP, IL, SG, TW, UA, RS, SI, KR, MT, NC, GR, PE, HN, GT, MD, UY, DO, NZ, BG, GE, TZ, ZM, EC, CL, MX), plus directors and UK beneficial ownership, corporate events, monitoring, filed financial statements, insolvency notices, VAT (VIES) and LEI (GLEIF) lookup, sanctions screening (beta) and public-procurement awards, as native MCP tools for Claude, Cursor and any MCP-compatible client.",
   "type": "module",
