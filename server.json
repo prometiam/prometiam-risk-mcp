@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.prometiam/risk-mcp",
   "title": "Prometiam Risk Intelligence",
-  "description": "Company data and KYB API for 44 countries: monitoring, financial statements, insolvency, sanctions",
-  "version": "0.4.69",
+  "description": "Company data and KYB API for 52 countries: monitoring, financial statements, insolvency, sanctions",
+  "version": "0.4.80",
   "websiteUrl": "https://www.prometiam.com/risk-api",
   "remotes": [
     {
@@ -24,7 +24,7 @@
     {
       "registryType": "npm",
       "identifier": "prometiam-risk-mcp",
-      "version": "0.4.69",
+      "version": "0.4.80",
       "transport": {
         "type": "stdio"
       },
@@ -57,6 +57,7 @@
         "companies_search",
         "company_detail",
         "company_by_identifier",
+        "company_check",
         "events_search",
         "events_timeline",
         "event_detail",
@@ -136,6 +137,14 @@
         "PE",
         "HN",
         "GT",
+        "MD",
+        "UY",
+        "DO",
+        "NZ",
+        "BG",
+        "GE",
+        "TZ",
+        "ZM",
         "EC",
         "CL"
       ],
